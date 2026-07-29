@@ -8,24 +8,33 @@
 
 ## О проекте
 
-**To-Do Console** — это консольное приложение для управления задачами, написанное на Python.
+**To-Do Console** - консольное приложение для управления задачами, написанное на Python.
 
-Проект был создан в качестве учебной работы для изучения Python и постепенно развивается, получая новые возможности с каждой версией.
+Проект был создан как учебная работа для изучения Python и постепенно развивается, получая новые возможности с каждой новой версией.
 
 ---
 
 ## Возможности
 
--  Добавление задач
--  Просмотр списка задач
--  Редактирование задач
--  Удаление отдельных задач
--  Удаление всех задач
--  Отметка выполненных задач
--  Подсчет выполненных задач
--  Процент выполнения
--  Цветной интерфейс (Colorama)
--  Автоматическое сохранение задач в файл
+- Добавление задач
+- Просмотр списка задач
+- Редактирование задач
+- Удаление отдельных задач
+- Удаление всех задач
+- Отметка выполненных задач
+- Подсчет выполненных задач
+- Процент выполнения
+- Цветной интерфейс (Colorama)
+- Автоматическое сохранение задач в файл
+
+---
+
+## Что нового в версии 1.1
+
+- Использование `with` вместо `open()` / `close()`
+- Автоматическое создание файла `tasks To Do.txt` при первом запуске
+- Улучшено форматирование и читаемость кода
+- Небольшая оптимизация проекта
 
 ---
 
@@ -33,6 +42,12 @@
 
 - Python 3
 - Colorama
+
+---
+
+## Требования
+
+- Python 3.10 или новее
 
 ---
 
@@ -54,7 +69,7 @@ pip install -r requirements.txt
 python "to do.py"
 ```
 
-или дважды нажмите на
+или дважды нажмите
 
 ```text
 start.bat
@@ -64,7 +79,7 @@ start.bat
 
 ## Версия
 
-**1.0**
+**1.1**
 
 ---
 
@@ -78,7 +93,7 @@ start.bat
 
 ## About
 
-**To-Do Console** is a console-based task manager written in Python.
+**To-Do Console** is a console application for managing tasks written in Python.
 
 This project was created as a learning project while studying Python and continues to grow with every new version.
 
@@ -86,16 +101,25 @@ This project was created as a learning project while studying Python and continu
 
 ## Features
 
--  Add tasks
--  View task list
--  Edit tasks
--  Delete individual tasks
--  Delete all tasks
--  Mark tasks as completed
--  Completed task statistics
--  Completion percentage
--  Colored console interface (Colorama)
--  Automatic task saving
+- Add tasks
+- View task list
+- Edit tasks
+- Delete individual tasks
+- Delete all tasks
+- Mark tasks as completed
+- Completed task statistics
+- Completion percentage
+- Colored console interface (Colorama)
+- Automatic task saving
+
+---
+
+## What's New in Version 1.1
+
+- Replaced `open()` / `close()` with `with`
+- Automatic creation of `tasks To Do.txt` on first launch
+- Improved code formatting and readability
+- Minor code optimization
 
 ---
 
@@ -103,6 +127,12 @@ This project was created as a learning project while studying Python and continu
 
 - Python 3
 - Colorama
+
+---
+
+## Requirements
+
+- Python 3.10 or newer
 
 ---
 
@@ -134,7 +164,7 @@ start.bat
 
 ## Version
 
-**1.0**
+**1.1**
 
 ---
 
