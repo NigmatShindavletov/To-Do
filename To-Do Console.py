@@ -2,19 +2,22 @@ import os
 from datetime import datetime
 from colorama import Fore, Style, init
 init()
-tasks=[]
-file=open("tasks To Do.txt", "r", encoding="utf-8")
-tasks=file.read().splitlines()
-file.close()
+tasks = []
+
+if not os.path.exists("tasks To Do.txt"):
+    with open("tasks To Do.txt", "w", encoding="utf-8"):
+        pass
+    
+with open("tasks To Do.txt", "r", encoding="utf-8") as file:
+    tasks = file.read().splitlines()
     
 def clear():
     os.system("cls")
 def pause():
     input("Нажмите Enter для продолжения")
 def save_tasks():
-    file = open("tasks To Do.txt", "w", encoding="utf-8")
-    file.write("\n".join(tasks))
-    file.close()
+    with open("tasks To Do.txt", "w", encoding="utf-8") as file:
+        file.write("\n".join(tasks))
 def print_tasks(show_back=False, show_delete_all=False):
     if len(tasks) == 0:
         print(Fore.YELLOW + "У вас нет запланированных задач" + Style.RESET_ALL)
@@ -57,46 +60,46 @@ while True:
     print(Style.BRIGHT+Fore.YELLOW + "5. Редактировать задачу")
     print(Style.BRIGHT+Fore.RED + "6. Выход")
     print(Style.RESET_ALL)
-    choice=input("Выберите пункт:")
-    if choice=="1":
+    choice = input("Выберите пункт:")
+    if choice == "1":
         print_tasks()
         if len(tasks) != 0:
             pause()
             continue
         if len(tasks) == 0:
             continue
-    elif choice=="2":
-        task=input(Fore.CYAN+"Введите задачу:"+Style.RESET_ALL)
-        time_today=datetime.now().strftime("%d.%m.%Y %H:%M")
+    elif choice == "2":
+        task = input(Fore.CYAN+"Введите задачу:"+Style.RESET_ALL)
+        time_today = datetime.now().strftime("%d.%m.%Y %H:%M")
         tasks.append(f"[ ] {time_today} | {task}")
         save_tasks()
         print(Style.BRIGHT+Fore.GREEN+"Задача добавлена!"+Style.RESET_ALL)
         pause()
-    elif choice=="3":
+    elif choice == "3":
         print_tasks(True, True)
         if len(tasks) == 0:
             continue
         try:
-            delete_task=int(input(Fore.CYAN+"Введите номер задачи которую хотите удалить:"+Style.RESET_ALL))
+            delete_task = int(input(Fore.CYAN+"Введите номер задачи которую хотите удалить:"+Style.RESET_ALL))
         except ValueError:
             print(Style.BRIGHT+Fore.RED+"Нужно ввести число!"+Style.RESET_ALL)
             pause()
             continue
-        if 1<=delete_task<=len(tasks):
+        if 1 <= delete_task <= len(tasks):
             tasks.pop(delete_task-1)
             save_tasks()
             print(Style.BRIGHT+Fore.GREEN+"Задача удалена!"+Style.RESET_ALL)
             pause()
-        elif delete_task==0:
+        elif delete_task == 0:
             continue
-        elif delete_task==len(tasks)+1:
+        elif delete_task == len(tasks)+1:
             print(Fore.RED + "⚠ Вы действительно хотите удалить ВСЕ задачи?")
             print(Fore.YELLOW + "Это действие нельзя отменить.")
             print()
             print("1. Да")
             print("2. Нет")
             try:
-                DelItog=input(Fore.WHITE +"Ваш выбор:"+Style.RESET_ALL)
+                DelItog = input(Fore.WHITE +"Ваш выбор:"+Style.RESET_ALL)
             except:
                 print(Style.BRIGHT+Fore.RED+"Неверно введенный ответ!"+Style.RESET_ALL)
                 pause()
@@ -115,43 +118,43 @@ while True:
         else:
             print(Style.BRIGHT+Fore.RED+"Неверный номер задачи!"+Style.RESET_ALL)
             pause()
-    elif choice=="4":
+    elif choice == "4":
         print_tasks(True)
         if len(tasks) == 0:
             continue
         try:
-            note_task=int(input(Fore.CYAN+"Введите номер задачи которую хотите отметить:"+Style.RESET_ALL))
+            note_task = int(input(Fore.CYAN+"Введите номер задачи которую хотите отметить:"+Style.RESET_ALL))
         except ValueError:
             print(Style.BRIGHT+Fore.RED+"Нужно ввести число!"+Style.RESET_ALL)
             pause()
             continue
-        if note_task==0:
+        if note_task == 0:
                 continue
-        elif 1<=note_task<=len(tasks):
+        elif 1 <= note_task <= len(tasks):
             if tasks[note_task-1].startswith("[✓]"):
                 print(Style.BRIGHT+Fore.YELLOW+"Эта задача уже выполнена!"+Style.RESET_ALL)
                 pause()
             else:
-                tasks[note_task-1]="[✓]"+tasks[note_task-1][3:]
+                tasks[note_task-1] = "[✓]"+tasks[note_task-1][3:]
                 save_tasks()
                 print(Style.BRIGHT+Fore.GREEN+"Задача отмечена как выполненная!"+Style.RESET_ALL)
                 pause()
         else:
             print(Style.BRIGHT+Fore.RED+"Неверный номер задачи!"+Style.RESET_ALL)
             pause()
-    elif choice=="5":
+    elif choice == "5":
         print_tasks(True)
         if len(tasks) == 0:
             continue
         try:
-            edit_task=int(input(Fore.CYAN+"Введите номер задачи которую хотите отредактировать:"+Style.RESET_ALL))
+            edit_task = int(input(Fore.CYAN+"Введите номер задачи которую хотите отредактировать:"+Style.RESET_ALL))
         except ValueError:
             print(Style.BRIGHT+Fore.RED+"Нужно ввести число!"+Style.RESET_ALL)
             pause()
             continue
-        if edit_task==0:
+        if edit_task == 0:
             continue
-        elif 1<=edit_task<=len(tasks):
+        elif 1 <= edit_task <= len(tasks):
             new_task = input(Fore.CYAN + "Введите новый текст задачи:" + Style.RESET_ALL)
             info, text = tasks[edit_task - 1].split(" | ")
             tasks[edit_task - 1] = info + " | " + new_task
@@ -161,7 +164,7 @@ while True:
         else:
             print(Style.BRIGHT+Fore.RED+"Неверный номер задачи!"+Style.RESET_ALL)
             pause()
-    elif choice=="6":
+    elif choice == "6":
         print(Fore.CYAN + "До встречи!" + Style.RESET_ALL)
         break
     else:
